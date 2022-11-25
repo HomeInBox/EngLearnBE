@@ -6,15 +6,16 @@ const method = {
             const Score  = "OnGetScore";
             res.success(Score,200)
         }catch(error){
-            res.error("OnGetScore",error,"OnGetScore");
+            res.error("",error,"OnGetScoreTest");
         }
     },
     
     async OngetScore(req,res){
         try {
-            
+            const requset = req.body
+            res.success(requset,200)
         } catch (error) {
-            
+            res.error("",error,"OnGetScoreTest");
         }
     }
 }

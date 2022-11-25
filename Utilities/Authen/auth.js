@@ -7,7 +7,7 @@ const genareteToken = () =>{
 
 const method = {
 
-  async verifyAccess(req ,res ,next) {
+  async AuthenGuard(req ,res ,next) {
     try{
       const token = req.headers['authorization']
     if (token == null) return res.error("not found token",error,"OnGetScore");
