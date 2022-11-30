@@ -1,10 +1,6 @@
 const jwt = require('jsonwebtoken')
 const config = require('../../Config/config')
 
-const genareteToken = () =>{
-        return jwt.sign({username: "tanadej",age :26}, config.secret, { expiresIn: '1800s' });
-}
-
 const method = {
 
   async AuthenGuard(req ,res ,next) {
@@ -14,21 +10,22 @@ const method = {
   
     jwt.verify(token, config.secret,(err,user) =>{
       if (err){
-        console.log("not verify")
-        res.error("OnGetScore",error,"OnGetScore");
-       
+        res.error('',`UnAuthorized`,401);
       }else {
-        console.log(user);
         next();
       }
     });
-
     }catch(error){
-      res.error("",error,"UnAuthorized",401);
+      res.error('',`UnAuthorized`,401);
     }
-  }
+  },
+
+  async genareteToken (req){
+    return jwt.sign({
+      USERNAME: req.USERNAME,
+      PASSWORD: req.PASSWORD
+    }, config.secret, { expiresIn: '1800s' });
+ },
 }
-
-
 
 module.exports = {...method};

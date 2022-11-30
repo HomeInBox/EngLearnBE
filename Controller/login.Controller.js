@@ -29,7 +29,7 @@ const methodUserManage = {
     },
     async UserCreate(req,res){
         try {
-            await BusinessLogic.CreateUser();
+            await BusinessLogic.CreateUser(req.body);
             res.success('','Create Success',200);
         } catch (error) {
             res.error(req.body,`UserCreate: ${error}`);
@@ -37,16 +37,18 @@ const methodUserManage = {
     },
     async UserUpdate(req,res){
         try {
-            
+            await BusinessLogic.UserUpdate(req.body);
+            res.success('','Update Success',200);
         } catch (error) {
-            
+            res.error(req.body,`UserUpdate: ${error}`);
         }
     },
     async UserRemove(req,res){
         try {
-            
+            await BusinessLogic.UserRemove(req.body);
+            res.success('','Remove Success',200);
         } catch (error) {
-            
+            res.error(req.body,`UserRemove: ${error}`);
         }
     }
 }

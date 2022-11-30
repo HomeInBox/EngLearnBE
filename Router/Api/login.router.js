@@ -5,6 +5,8 @@ const controller = require('../../Controller/login.Controller')
 router.post('/',controller.login)
 router.get('/getalluser',controller.FindAllUser)
 router.post('/getoneuser',controller.FindOneUser)
-router.post('/createuser',authen.AuthenGuard,controller.UserCreate)
+router.post('/createuser',controller.UserCreate)
+router.post('/updateuser',controller.UserUpdate)
+router.post('/removeuser',controller.UserRemove)
 
 module.exports = router;
