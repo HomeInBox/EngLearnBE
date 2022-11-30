@@ -11,22 +11,18 @@ async function main() {
 }
 
 const kittySchema = new mongoose.Schema({
-    name: String
+    name: String,
+    test:String
   });
 
-kittySchema.methods.speak = function speak() {
-    const greeting = this.name
-      ? "Meow name is " + this.name
-      : "I don't have a name";
-    console.log(greeting);
-};
+
 
  const savedata = async () =>{
-    const Kitten = mongoose.model('Kitten', kittySchema);
+    const Kitten = mongoose.model('Kitten3', kittySchema);
+    // const fluffy = new Kitten({ name: 'fluffy' });
+    // fluffy.save();
 
-    const fluffy = new Kitten({ name: 'fluffy' });
-    fluffy.save();
-    fluffy.speak();
+
     const kittens = await  Kitten.find();
     console.log(kittens);
 }
