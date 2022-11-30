@@ -14,18 +14,25 @@ const methodUserManage = {
     async FindAllUser(req,res){
         try {
            const result = await BusinessLogic.FindAllUser();
-            res.success(result,200);
+            res.success(result,'',200);
         } catch (error) {
-            res.error(error);
+            res.error(req.body,`FindAllUser: ${error}`);
+        }
+    },
+    async FindOneUser(req,res){
+        try {
+           const result = await BusinessLogic.FindByidUser(req.body);
+            res.success(result,'',200);
+        } catch (error) {
+            res.error(req.body,`FindByIdUser: ${error}`);
         }
     },
     async UserCreate(req,res){
         try {
-            console.log("createUser")
-            await BusinessLogic.createUser();
-            res.success('createUser',200);
+            await BusinessLogic.CreateUser();
+            res.success('','Create Success',200);
         } catch (error) {
-            res.error();
+            res.error(req.body,`UserCreate: ${error}`);
         }
     },
     async UserUpdate(req,res){

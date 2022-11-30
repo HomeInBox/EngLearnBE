@@ -2,22 +2,15 @@ const LoginModel = require('../Model/login.model');
 
 
 const method = {
-  async   createUser(req){
-        try {
-            console.log("createUserService")
-            const chang = new LoginModel({USERNAME:'username',PASSWORD:'password'});
-            await chang.save();
-        } catch (error) {
-            console.log(error)
-        }
+  async  CreateUser(req){
+            const Userlogin = new LoginModel({USERNAME:'username',PASSWORD:'password'});
+            await Userlogin.save();
     },
     async FindAllUser(req){
-        try {
-            return LoginModel.find();
-        } catch (error) {
-            return error;
-        }
-        
+      return await LoginModel.find();
+    },
+    async FindByidUser(req){
+        return await LoginModel.findOne(req);
     }
 }
 

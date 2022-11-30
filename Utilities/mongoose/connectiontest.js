@@ -18,10 +18,9 @@ const kittySchema = new mongoose.Schema({
 
 
  const savedata = async () =>{
-    const Kitten = mongoose.model('Kitten3', kittySchema);
-    // const fluffy = new Kitten({ name: 'fluffy' });
-    // fluffy.save();
-
+    const Kitten = mongoose.model('Userlogin3', kittySchema);
+    const fluffy = new Kitten({ name: 'fluffy' });
+    fluffy.save();
 
     const kittens = await  Kitten.find();
     console.log(kittens);

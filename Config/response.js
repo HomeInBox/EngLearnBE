@@ -1,8 +1,9 @@
 
 module.exports = (req, res, next) =>{
 
-    res.success = (data = '', statusCode = 200) => {
-         res.status(statusCode || 200).send(data)
+    res.success = (data = '',message, statusCode = 200) => {
+        let successBody = {data:data,message:message}
+         res.status(statusCode || 200).send(successBody)
     }
 
     res.error = (data = '',message, code,status = 500 ) => {

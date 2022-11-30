@@ -5,5 +5,7 @@ const USERLOGIN = new mongoose.Schema ({
     PASSWORD:String
 });
 
-const UserModel = mongoose.model('Kitten2', USERLOGIN);
+const UserModel = mongoose.model('userlogins', USERLOGIN);
+
+
 module.exports =  UserModel;
