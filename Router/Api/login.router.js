@@ -8,5 +8,6 @@ router.post('/getoneuser',controller.FindOneUser)
 router.post('/createuser',controller.UserCreate)
 router.post('/updateuser',controller.UserUpdate)
 router.post('/removeuser',controller.UserRemove)
+router.post('/testencrypt',controller.testencrypt)
 
 module.exports = router;

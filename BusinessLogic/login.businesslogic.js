@@ -1,16 +1,35 @@
 const LoginModel = require('../Model/login.model');
-const Extention = require('../Utilities/Extention')
+const Extention = require('../Utilities/Extention');
+const Authen = require('../Utilities/Authen/auth');
+const crypto = require('crypto');
 
-const method = {
+const methodLogin = {
+    async Login(req){
+        const Searchuser = await LoginModel.findOne({UERNAME:req.USERNAME,PASSWORD:req.PASSWORD});
+        if(Searchuser){
+            const Token = Authen.genareteToken(req);
+            return Token;
+        }else{
+            throw "";
+        }
+    }
+};
+
+const methodUserManage = {
   async  CreateUser(req){
+            const Searchuser = await LoginModel.findById(req._id);
             const body = req.data;
-            const Userlogin = new LoginModel(
-                {
-                    USERNAME:body.USERNAME
-                    ,PASSWORD:body.PASSWORD
-                    ,CREATE_DATE:Extention.DateTimeNow()
-                });
-            await Userlogin.save();
+            if(Searchuser){
+                throw "This Username already exists in the system!";
+            }else{
+                const Userlogin = new LoginModel(
+                    {
+                        USERNAME:body.USERNAME
+                        ,PASSWORD:body.PASSWORD
+                        ,CREATE_DATE:Extention.DateTimeNow()
+                    });
+                await Userlogin.save();
+            }
     },
 
     async FindAllUser(){
@@ -27,8 +46,7 @@ const method = {
         if(Searchuser){
            await LoginModel.updateOne({_id:Searchuser._id},
             {
-                USERNAME:body.USERNAME
-                ,PASSWORD:body.PASSWORD
+                 PASSWORD:body.PASSWORD
                 ,UPDATE_DATE:Extention.DateTimeNow(),
             }); 
         }else{
@@ -46,4 +64,4 @@ const method = {
     }
 }
 
-module.exports = {...method}
+module.exports = {...methodLogin,...methodUserManage}

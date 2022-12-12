@@ -1,4 +1,5 @@
 const BusinessLogic = require('../BusinessLogic/login.businesslogic');
+const extention = require('../Utilities/Extention')
 
 const methodLogin = {
     async login(req,res){
@@ -49,6 +50,16 @@ const methodUserManage = {
             res.success('','Remove Success',200);
         } catch (error) {
             res.error(req.body,`UserRemove: ${error}`);
+        }
+    },
+    async testencrypt(req,res){
+        try {
+            let key = await extention.Encrypt('tanadej');
+            let decrypt = await extention.decrypt(key)
+            console.log(decrypt);
+            res.success(key,'test',200);
+        } catch (error) {
+            res.error(req.body,`testencrypt: ${error}`);
         }
     }
 }
